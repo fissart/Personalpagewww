@@ -620,7 +620,7 @@ getFirstAverages(ciclo:HTMLInputElement, mension:HTMLInputElement, year:HTMLInpu
     ngOnInit() {
 
       this.year = new Date().getFullYear();
-      this.Tw.setTitle('Inicio ESFAP');
+      this.Tw.setTitle('Inicio NANCY VIZA');
 
       if (localStorage.getItem('id')) {
         this.usser();
