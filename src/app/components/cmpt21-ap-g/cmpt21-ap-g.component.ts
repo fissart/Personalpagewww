@@ -21,6 +21,7 @@
     data: any = [];
     public photoSelected!: string | ArrayBuffer | null;
     type!: string;
+    idexpo!:string;
     name!: string;
     id!: string;
     public archivos: any = [];
@@ -80,6 +81,8 @@
     }
 
     ngOnInit(): void {
+      this.idexpo=this.router.snapshot.paramMap.get('id')+'';
+
     this.router.params.subscribe(params => {
     console.log(localStorage.getItem('idcurso') || "" )
     this.gets()
@@ -87,7 +90,7 @@
     }
 
     create() {
-    this.Service.save(localStorage.getItem('id') || "", "APg")
+    this.Service.save(this.idexpo, "APg")
     .subscribe(
     (res: any) => {
     console.log(res);

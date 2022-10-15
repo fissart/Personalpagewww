@@ -8,7 +8,8 @@ import { AppComponent } from './app.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { DragDropModule } from '@angular/cdk/drag-drop';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
-
+import { NgxYoutubePlayerModule } from 'ngx-youtube-player';
+import { NgxVideoListPlayerModule } from 'ngx-video-list-player';
 import { KatexModule } from 'ng-katex';
 import { NavigationComponent } from './components/cmpt2-navigation/navigation.component';
 import { PhotosListComponent } from './components/cmpt1-land/photos-list.component';
@@ -17,6 +18,8 @@ import { UserComponent } from './components/cmpt3-user-register/user.component';
 import { LoginComponent } from './components/cmpt5-login/login.component';
 import { LandComponent } from "./components/cmpt2-users/land.component";
 import { QuillModule } from 'ngx-quill'
+
+
 
 import { UserPreviewComponent } from './components/cmpt4-user-preview/user-preview.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -147,11 +150,13 @@ import { CmptStoreEsfaComponent } from './components/cmpt-store-esfa/cmpt-store-
 		 //]
 	 //}
  //),
+    NgxYoutubePlayerModule.forRoot(),
 		MatProgressBarModule,
+		NgxVideoListPlayerModule,
 		BrowserAnimationsModule,
         NgxExtendedPdfViewerModule
 	],
-	providers: [],
+	providers: [NgxYoutubePlayerModule],
 	bootstrap: [AppComponent],
 })
 export class AppModule { }

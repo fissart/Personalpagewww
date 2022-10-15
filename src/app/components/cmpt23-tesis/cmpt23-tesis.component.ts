@@ -4,6 +4,8 @@
     import { environment } from '../../../environments/environment';
     import { ActivatedRoute } from '@angular/router';
     import { Router } from '@angular/router';
+    import {Title} from '@angular/platform-browser'
+
 
     @Component({
       selector: 'app-cmpt23-tesis',
@@ -32,6 +34,7 @@
       private routerr: Router,
       private Service: Svc23TESISService,
       private modal: NgbModal,
+      private Tw: Title,
       ) { }
       capturandoFile(event: any) {
       const ww = event.target.files[0];
@@ -81,14 +84,16 @@
       }
 
       ngOnInit(): void {
+        this.Tw.setTitle('Exposiciones NANCY VIZA');
+
       this.router.params.subscribe(params => {
       console.log(localStorage.getItem('idcurso') || "" )
       this.gets()
       });
       }
 
-      create() {
-      this.Service.save(localStorage.getItem('id') || "")
+      create(subtype:string){
+      this.Service.save(localStorage.getItem('id') || "", subtype)
       .subscribe(
       (res: any) => {
       console.log(res);
@@ -155,7 +160,7 @@
       this.name = "";
       this.photoSelected="";
       this.archivos = [];
-      
+
       }
       },
       err => console.log(err)

@@ -10,7 +10,7 @@
             <label for="exampleFormControlInput1" class="form-label">Título</label>
             <input type="text" class="form-control" placeholder="Photo's Title" #_title  [value]="title">
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 d-none">
             <label for="exampleFormControlInput1" class="form-label">Tipo</label>
             <select class="form-select" aria-label="Default select example" [ngModel]="selectedDevice ? selectedDevice : subtype" (ngModelChange)="onChange($event)" name="deviceText">
               <option selected>{{subtype}}</option>
@@ -22,7 +22,7 @@
               <option value="PROYECTO">PROYECTO</option>
             </select>
         </div>
-        <div class="form-group mb-3">
+        <div class="form-group mb-3 d-none">
             <label for="exampleFormControlInput1" class="form-label">Autor</label>
             <input type="text" class="form-control" placeholder="Autor" #_author  [value]="author">
         </div>
@@ -104,36 +104,96 @@
           <button class="btn btn-info shadow-none" (click)="modal.close()">Cerrar</button>
       </div>
     </ng-template>
-
+<!--
 <div class="container">
 <div class="row d-flex justify-content-center align-items-center bg-ligth">
 <button *ngIf="rol=='5' || rol=='1'" class="btn btn-info shadow-none mt-2  rounded-0" (click)="create()">Crear</button>
 </div>
 </div>
+-->
+
+
+
 
 <div *ngIf="data.length!==0" class="container py-1 px-0">
+<div class='h4 rounded text-center text-success my-0'>EXPOSICIONES INDIVIDUALES
+<button *ngIf="rol=='5' || rol=='1'" class="btn btn-info" (click)="create('individual')">Crear</button>
+</div>
+<div class="row border border-success justify-content-center">
+  <ng-container *ngFor="let doc of data index as i">
+    <div *ngIf="doc.subtype=='individual'" class="rounded p-2 col-md-4">
+      <div class="card-photo bg-success p-1">
+        <a class="btn w-100 p-0 text-light" [href]="'/sub_exposiciones/' + doc._id" style='text-decoration:none'>
+          <div  class="my-0 text-uppercase h5 text-center">{{doc.title}}</div>
+          <div *ngIf="doc.file" class="p-0">
+            <img *ngIf="doc.file.split('.').pop()=='png'||doc.file.split('.').pop()=='jpg'||doc.file.split('.').pop()=='jpeg'||doc.file.split('.').pop()=='svg'||doc.file.split('.').pop()=='webp'" [src]="apiUrl+'/'+ doc.file" class="img-fluid w-70" (error)="onImgError($event)">
+          </div>
+              <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+        </a>
+        <div *ngIf="rol=='5' || rol=='1'" class="w-100 p-0 text-center btn-group">
+          <button class="btn btn-danger shadow-none" (click)="delete(doc._id)">Eliminar</button>
+          <button class="btn btn-light shadow-none" (click)="open1(ww, doc._id, doc.title, doc.description, doc.file, doc.subtype, doc.author)">Editar
+          </button>
+          <button class="btn btn-info shadow-none" (click)="open2(w, doc._id, doc.title, doc.description, doc.file)">Show</button>
+         </div>
+         </div>
+      </div>
+  </ng-container>
+</div>
 
-<div class="row justify-content-center align-items-center bg-ligth">
+<div class='h4 rounded text-center text-warning my-0 mt-3'>EXPOSICIONES BIPERSONALES
+  <button *ngIf="rol=='5' || rol=='1'" class="btn btn-info" (click)="create('bipersonal')">Crear</button>
+</div>
 
-  <div class="p-2 col-md-4" *ngFor="let doc of data index as i">
+<div class="row border border-warning justify-content-center bg-ligth">
+  <ng-container *ngFor="let doc of data index as i">
+      <div *ngIf="doc.subtype=='bipersonal'" class="rounded p-2 col-md-4">
+        <div class="bg-warning bounce p-1">
+        <a class="btn w-100 p-0 text-dark" [href]="'/sub_exposiciones/' + doc._id" style='text-decoration:none'>
+          <div  class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
+          <div *ngIf="doc.file" class="p-0">
+            <img *ngIf="doc.file.split('.').pop()=='png'||doc.file.split('.').pop()=='jpg'||doc.file.split('.').pop()=='jpeg'||doc.file.split('.').pop()=='svg'||doc.file.split('.').pop()=='webp'" [src]="apiUrl+'/'+ doc.file" class="img-fluid w-70" (error)="onImgError($event)">
+          </div>
+              <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+            </a>
+          <div *ngIf="rol=='5' || rol=='1'" class="w-100 p-0 text-center btn-group">
+            <button class="btn btn-danger shadow-none" (click)="delete(doc._id)">Eliminar</button>
+            <button class="btn btn-light shadow-none" (click)="open1(ww, doc._id, doc.title, doc.description, doc.file, doc.subtype, doc.author)">Editar
+            </button>
+            <button class="btn btn-info shadow-none" (click)="open2(w, doc._id, doc.title, doc.description, doc.file)">Show</button>
+           </div>
+         </div>
+      </div>
+  </ng-container>
+</div>
 
-    <div class="card border text-light p-2">
-        <span class="h5 text-center text-warning">{{doc.title}}</span>
-        <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
-        <ng-katex-html class="d-none" *ngIf="doc.description" [html]="doc.description.substring(0,100)+'...'"></ng-katex-html>
-        <span class="text-center text-warning">{{doc.type}}</span>
-    <div  class="p-0 text-center">
 
-      <button *ngIf="rol=='5' || rol=='1'" class="btn btn-danger shadow-none" (click)="delete(doc._id)">Eliminar</button>
-      <button *ngIf="rol=='5' || rol=='1'" class="btn btn-info shadow-none" (click)="open1(ww, doc._id, doc.title, doc.description, doc.file, doc.subtype, doc.author)">Editar
-      </button>
-      <button class="btn btn-warning shadow-none" (click)="open2(w, doc._id, doc.title, doc.description, doc.file)">Show</button>
-     </div>
 
-    </div>
+<div class='h4 rounded text-center text-info my-0 mt-3'>EXPOSICIONES GRUPALES
+  <button *ngIf="rol=='5' || rol=='1'" class="btn btn-info" (click)="create('grupal')">Crear</button>
+</div>
 
-  </div>
+<div class="row border border-info justify-content-center bg-ligth">
+  <ng-container *ngFor="let doc of data index as i">
+      <div *ngIf="doc.subtype=='grupal'" class="rounded  p-2 col-md-4">
+        <div class="bg-info jello p-1">
+        <a class="btn p-0 text-dark w-100" [href]="'/sub_exposiciones/' + doc._id" style='text-decoration:none'>
+          <div  class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
+          <div *ngIf="doc.file" class="p-0">
+            <img *ngIf="doc.file.split('.').pop()=='png'||doc.file.split('.').pop()=='jpg'||doc.file.split('.').pop()=='jpeg'||doc.file.split('.').pop()=='svg'||doc.file.split('.').pop()=='webp'" [src]="apiUrl+'/'+ doc.file" class="img-fluid w-70" (error)="onImgError($event)">
+          </div>
 
+              <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+        </a>
+          <div  class="p-0 d-flex btn-group">
+            <button *ngIf="rol=='5' || rol=='1'" class="btn btn-danger shadow-none" (click)="delete(doc._id)">Eliminar</button>
+            <button *ngIf="rol=='5' || rol=='1'" class="btn btn-light shadow-none" (click)="open1(ww, doc._id, doc.title, doc.description, doc.file, doc.subtype, doc.author)">Editar
+            </button>
+            <button *ngIf="rol=='5' || rol=='1'" class="btn btn-warning shadow-none" (click)="open2(w, doc._id, doc.title, doc.description, doc.file)">Show</button>
+           </div>
+         </div>
+      </div>
+  </ng-container>
 </div>
 
 </div>

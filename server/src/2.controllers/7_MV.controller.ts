@@ -5,9 +5,9 @@ import Collection, { ICollection } from '../1.models/7_Collection';
 import Book, { IBook } from '../1.models/9_Book';
 //createController///////////////////////////////////////////////////////////////////////
 export async function createController(req: Request, res: Response): Promise<Response> {
-    const { title, description, user, type } = req.body;
+    const { title, description, user, type, subtype } = req.body;
     //console.log(req.body);
-    const newDate = { title, description, user, type};
+    const newDate = { title, description, user, type, subtype};
     const data = new Collection(newDate);
     await data.save();
     return res.json({ message: 'Ok create' });
@@ -17,6 +17,16 @@ export async function getsController(req: Request, res: Response): Promise<Respo
   const { type } = req.params;
   console.log(type);
     const data = await Collection.find({type:type});
+    return res.json(data);
+}
+
+//getsController/////////////////////////////////////////////////////////////////////////
+export async function getsContttroller(req: Request, res: Response): Promise<Response> {
+  const { ObjectId } = require("mongodb");
+  const { type, expo } = req.params;
+  const idexpo = ObjectId(req.params.expo);
+  //console.log(type, id);
+  const data = await Collection.find({type:type, user:idexpo});
     return res.json(data);
 }
 //getupdateController////////////////////////////////////////////////////////////////////

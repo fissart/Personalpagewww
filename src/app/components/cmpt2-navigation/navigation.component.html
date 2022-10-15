@@ -3,26 +3,10 @@
         <ng-container *ngIf="!authService.loggedIn(); else loggedInw">
             <a class="navbar-brand my-3 text-light" routerLink="/">
               <div class="d-flex">
-
               <div class="px-3">
-                <img class="wrapperest12" src="/assets/logo.svg" alt="image">
+                <img class="wrapperest12 text-warning" src="/assets/logo.svg" alt="image">
               </div>
-
-              <div class="col-md-3 d-none">
-
-                <div class="text-warning h3 p-0">
-                  ESFAP
-                </div>
-                <span class="text-light h6  p-0">
-                FELIPE GUAMÁN
-              </span>
-              <br>
-              <span class="text-light h6  p-0">
-              POMA DE AYALA
-            </span>
-            </div>
               </div>
-
             </a>
         </ng-container>
         <ng-container>
@@ -45,8 +29,9 @@
 
             <ul class="navbar-nav ml-auto">
 
+              <!--
                 <li class="nav-item dropdown">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">BIOGRAFIA</a>
+                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">BIO</a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
                         <li><a class="dropdown-item" href="/Cmpt14MVComponent">MISIÓN VISIÓN</a></li>
                         <li><a class="dropdown-item" href="Cmpt15RHComponent">RESEÑA HISTÓRICA</a></li>
@@ -59,21 +44,37 @@
                         </li>
                     </ul>
                 </li>
+              -->
 
-                <li class="nav-item">
-                    <a class="nav-link font-bold" href="/Cmpt19EDUCACIONComponent">EXPOSICIONES</a>
-                </li>
 
-                    <li class="nav-item dropdown d-none">
-                    <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EXPOSICIONES</a>
-                    <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                        <li><a class="dropdown-item" href="/Cmpt19EDUCACIONComponent">EDUCACIÓN ARTÍSTICA</a></li>
-                        <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">ARTISTA PROFESIONAL</a>
-                            <ul class="dropdown-menuw">
-                                <a class="dropdown-item" href="/Cmpt20APPComponent">PINTURA</a>
-                                <a class="dropdown-item" href="/Cmpt21APGComponent">GRABADO</a>
-                                <a class="dropdown-item" href="/Cmpt22APEComponent">ESCULTURA</a>
-                            </ul>
+              <li class="nav-item">
+                  <a class="nav-link font-bold" href="/">INICIO</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link font-bold" href="/Cmpt14MVComponent">BIO</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link font-bold" href="/proyectos">PROYECTOS</a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link font-bold" href="/exposiciones">EXPOSICIONES</a>
+              </li>
+
+              <li class="nav-item">
+                <a class="nav-link font-bold" href="/textos">TEXTOS</a>
+              </li>
+
+              <li class="nav-item dropdown d-none">
+              <a class="nav-link dropdown-toggle" id="navbarDropdownMenuLink" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">EXPOSICIONES</a>
+              <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+                  <li><a class="dropdown-item" href="/Cmpt19EDUCACIONComponent">EDUCACIÓN ARTÍSTICA</a></li>
+                  <li class="dropdown-submenu"><a class="dropdown-item dropdown-toggle">ARTISTA PROFESIONAL</a>
+                    <ul class="dropdown-menuw">
+                        <a class="dropdown-item" href="/Cmpt20APPComponent">PINTURA</a>
+                        <a class="dropdown-item" href="/Cmpt21APGComponent">GRABADO</a>
+                        <a class="dropdown-item" href="/Cmpt22APEComponent">ESCULTURA</a>
+                    </ul>
                             <!--
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="/Cmpt20APPComponent">PINTURA</a></li>
@@ -82,8 +83,8 @@
 
                             </ul>
                           -->
-                        </li>
-                    </ul>
+                  </li>
+                </ul>
                 </li>
 
                 <li class="nav-item dropdown d-none">
@@ -121,15 +122,20 @@
                     </ul>
                 </li>
                 <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
-                    <li class="nav-item">
-                        <a class="nav-link font-bold" routerLink="/login">INICIAR</a>
-                    </li>
+                  <li class="nav-item">
+                      <a class="nav-link font-bold" routerLink="/login">INICIAR</a>
+                  </li>
+                  <li class="nav-item">
+                      <a class="nav-link font-bold" routerLink="/registro">Register</a>
+                  </li>
 
                 </ng-container>
                 <ng-template #loggedIn>
+<!--
                     <li class="nav-item">
-                        <a class="nav-link" routerLink="/">Personal</a>
+                        <a class="nav-link" routerLink="/">PEOPLE SPACE</a>
                     </li>
+-->
                     <li class="nav-item">
                         <a class="nav-link" style="cursor: pointer;" (click)="authService.logout()">CERRAR</a>
                     </li>

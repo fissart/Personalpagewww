@@ -6,13 +6,15 @@ import Filecurse, { IFilecurse } from '../1.models/Filecurse';
 
 //createController///////////////////////////////////////////////////////////////////////
 export async function createController(req: Request, res: Response): Promise<Response> {
-  const { title, type, img, curse, codigo} = req.body;
+console.log(req);
+
+  const { title, type, img, curse, codigo, description} = req.body;
   if (req.file) {
-    const newCurse = { title, type, img : req.file.path, curse, codigo };
+    const newCurse = { title, type, img : req.file.path, curse, codigo, description };
     const userw = new Filecurse(newCurse);
     await userw.save();
   } else {
-    const newCurse = { title, type, img, curse, codigo };
+    const newCurse = { title, type, img, curse, codigo, description };
     const userw = new Filecurse(newCurse);
     await userw.save();
   }
@@ -23,7 +25,7 @@ export async function createController(req: Request, res: Response): Promise<Res
 };
 //getsController/////////////////////////////////////////////////////////////////////////
 export async function getsController(req: Request, res: Response): Promise<Response> {
-    const data = await Filecurse.find({type: 'RESPONCE'});
+    const data = await Filecurse.find();
     return res.json(data);
 }
 //getupdateController////////////////////////////////////////////////////////////////////
@@ -42,9 +44,31 @@ export async function deleteController(req: Request, res: Response): Promise<Res
 //updateController///////////////////////////////////////////////////////////////////////
 export async function updateController(req: Request, res: Response): Promise<Response> {
     const { id } = req.params;
-    const {  title } = req.body;
-    const update = await Filecurse.findByIdAndUpdate(id, { title });
+    const {blogspot, youtube, instagram, whatsapp, facebook,  title, description } = req.body;
+    const update = await Filecurse.findByIdAndUpdate(id, {blogspot, youtube, instagram, whatsapp, facebook, title, description });
     return res.json({
         message: 'Successfully updated'
     });
+}
+//updateController///////////////////////////////////////////////////////////////////////
+export async function FileupdateController(req: Request, res: Response): Promise<Response> {
+  const { id } = req.params;
+console.log(id);
+  const update = '';
+  if (req.file) {
+      const File = await Filecurse.findById(id) as IFilecurse;
+      if (File) {
+          try {
+              await fs.unlink(path.resolve(File.img));
+          } catch (err) {
+              console.error(err);
+          }
+      }
+      const update = await Filecurse.findByIdAndUpdate(id, { img : req.file.path });
+  } else {
+      const update = await Filecurse.findByIdAndUpdate(id, { });
+  }
+  return res.json({
+      message: 'Successfully updated'
+  });
 }

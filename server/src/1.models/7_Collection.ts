@@ -2,6 +2,7 @@ import { Schema, model, Document } from 'mongoose'
 const schema = new Schema({
     title: String,
     type: String,
+    subtype: String,
     description: String,
     file: String,
     user: {
@@ -14,6 +15,7 @@ const schema = new Schema({
 export interface ICollection extends Document {
   title: string,
   type: string,
+  subtype: string,
   description: string,
   file: string,
   user: {

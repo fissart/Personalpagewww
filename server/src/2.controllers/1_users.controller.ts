@@ -133,11 +133,6 @@ export async function getupdateController(req: Request, res: Response): Promise<
   const user = ObjectId(req.params.id);
   const Usser = await User.aggregate([
     {
-        $match: {
-            _id: user,
-        },
-    },
-    {
         $lookup: {
             from: "filecurses",
             let: { www: "$_id" },

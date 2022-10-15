@@ -5,12 +5,8 @@
 File
 -->
 <ng-template #filew let-modal>
-  <div class="modal-header bg-succes text-center">
-  {{text.substr(14,50)}}
 
-
-</div>
-   <div class="modal-body bg-warning">
+   <div class="modal-body p-0">
     <img *ngIf="text && text.split('.').pop()=='png'||text.split('.').pop()=='jpg'||text.split('.').pop()=='jpeg'||text.split('.').pop()=='svg'" [src]="apiURL+'/'+ text" class="img-fluid w-100" (error)="onImgError($event)">
 
     <ngx-doc-viewer *ngIf="text && text.split('.').pop()=='doc'"
@@ -30,9 +26,8 @@ File
      [height]="'500px'"
      ></ngx-extended-pdf-viewer>
    </div>
-   <div class="modal-footer bg-succes">
-
-    <button class="btn btn-info shadow-none" (click)="modal.close()">Close</button>
+   <div class="modal-footer bg-succes p-0">
+    <button class="btn btn-info shadow-none w-100" (click)="modal.close()">Close</button>
   </div>
 
 </ng-template>
@@ -41,19 +36,16 @@ New
 -->
 <div class="height"></div>
 <ng-template #new let-modal>
-    <div class="modal-header" [ngStyle]="{background:'rgb(150,0,0)'}">
-      <div class="h5 ">
+    <div class="modal-header py-2 px-1 text-center" [ngStyle]="{background:'rgb(250,250,250)'}">
+      <div class="h5 my-0">
         {{text}}
       </div>
     </div>
-    <div class="modal-body" [ngStyle]="{background:'gray'}">
-        <ng-katex-html *ngIf="texto" [html]="texto"></ng-katex-html>
+    <div class="modal-body p-1" [ngStyle]="{background:'white'}">
         <div *ngIf="textoimg.split('.').pop()=='png'||textoimg.split('.').pop()=='jpg'||textoimg.split('.').pop()=='jpeg'||textoimg.split('.').pop()=='svg'">
           <img [src]="apiURL+'/'+ textoimg" class="m-auto w-100 img-fluid" (error)="onImgError($event)">
         </div>
-        <div class=" text-center border rounded">
-            {{textoimg}}
-        </div>
+
         <ngx-extended-pdf-viewer *ngIf="textoimg && textoimg.split('.').pop()=='pdf'"
         [src]="apiURL+'/'+ textoimg"
         [height]="'800px'"
@@ -61,9 +53,10 @@ New
         [textLayer]="true"
         [showHandToolButton]="false">
       </ngx-extended-pdf-viewer>
+      <ng-katex-html *ngIf="texto" [html]="texto"></ng-katex-html>
     </div>
-    <div class="modal-footer" [ngStyle]="{background:'rgb(150,0,0)'}">
-        <button type="button" class="btn btn-success shadow-none" (click)="modal.close('Save click')">Cerrar</button>
+    <div class="modal-footer p-0" [ngStyle]="{background:'rgb(250,250,250)'}">
+        <button type="button" class="btn btn-success shadow-none w-100" (click)="modal.close('Save click')">Cerrar</button>
     </div>
 </ng-template>
 <!--
@@ -155,41 +148,36 @@ New refresh
 </ng-template>
 
 
-<div class="container bg-light p-0 mb-5 d-flex  justify-content-center align-items-center">
+
+
+<div class="container bg-light p-1 border mb-5 d-flex  justify-content-center align-items-center">
+  <div class="row w-100">
 <div class="jumbotron col-md-6 p-1">
-  <h1 class="display-4">Hello, world!</h1>
-  <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+  <h1 class="display-4" style="font-family: 'Brush Script MT'"> Hola mundo!</h1>
+  <p class="lead">Esto es una pagina personal de Nancy viza.</p>
   <hr class="my-4">
-  <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+  <p>It Con un contenido largo ...</p>
   <p class="lead">
-    <a class="btn btn-primary btn-lg" href="/Cmpt14MVComponent" role="button">Learn more</a>
+    <a class="btn btn-primary btn-lg" href="/Cmpt14MVComponent" role="button">Leer más</a>
   </p>
 </div>
 
-<div class="jumbotron col-md-6 p-1">
-<img src="/assets/logo.svg" class="img-fluid" alt="Responsive image"></div>
-
+<div class="jumbotron col-md-6 p-1 text-center">
+<img src="/assets/yo.jpg" class="img-fluid" alt="Responsive image"></div>
+</div>
 </div>
 
-<div class="container">
 
-  <!-- [effect]="'coverflow'"[centeredSlides]="true" [slidesPerView]="'auto'" [coverflowEffect]="{
-    rotate: 50,
-    stretch: 0,
-    depth: 100,
-    modifier: 1,
-    slideShadows: true
-  }"-->
-
-    <swiper class="border p-1" *ngIf="user && newws.length!==0" [autoplay]="{delay: 2000, disableOnInteraction: true}"
+  <div class="container rounded border " style="padding:1em">
+<swiper class="border p-1" *ngIf="newws.length!==0" [autoplay]="{delay: 2000, disableOnInteraction: true}"
     [config]="config">
         <ng-template swiperSlide *ngFor="let photo of newws index as i">
+          <button class="btn btn-warning text-uppercase" (click)="openwww(new, photo.title, photo.description, photo.img)">
             <img [src]="apiURL+'/'+photo.img" (error)="onImgError($event)">
-            <div class="w-100 text-warning h2" style="position: absolute; left: 50%;transform: translate(-50%, -50%)">
-                <button class="btn btn-warning text-uppercase" (click)="openwww(new, photo.title, photo.description, photo.img)">
+            <div class="w-75 text-light h5 py-5 transparencia" style="font-family: 'Brush Script MT'" style="position: absolute; left: 50%; bottom:30%;transform: translate(-50%, -50%)">
                   {{photo.title}}
-                </button>
             </div>
+          </button>
             <div class="mytest w-100">
                 <div *ngIf="photo.show=='false'; then thenBlock else elseBlock"></div>
                   <div class="btn-group" role="group" aria-label="Basic example">
@@ -206,62 +194,304 @@ New refresh
                   </button>
                   </ng-template>
 
-                <button *ngIf="rol=='1'" class="btn btn-warning shadow-none" (click)="deletenews( $any(photo)._id)">
-                    <mat-icon svgIcon="go" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
-                    Eliminar
-                </button>
-                <button *ngIf="rol=='1'" class="btn btn-primary shadow-none" (click)="open2(www, photo._id, photo.title, photo.description, photo.img, photo.show)">
-                    <mat-icon svgIcon="go" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
-                    Edit
-                </button>
+                  <button *ngIf="rol=='1'" class="btn btn-warning shadow-none" (click)="deletenews( $any(photo)._id)">
+                      <mat-icon svgIcon="go" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+                      Delete
+                  </button>
+                  <button *ngIf="rol=='1'" class="btn btn-primary shadow-none" (click)="open2(www, photo._id, photo.title, photo.description, photo.img, photo.show)">
+                      <mat-icon svgIcon="go" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+                      Edit
+                  </button>
               </div>
             </div>
 
         </ng-template>
     </swiper>
 
-    <button class="btn card-photo btn-success shadow-none " (click)="createnews()">
+
+
+    <button *ngIf="rol=='1' "class="btn card-photo btn-success shadow-none w-100" (click)="createnews()">
         <mat-icon svgIcon="integrate" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
         New's {{ newws ? newws.length : null }}
     </button>
 
-    <div class="container text-center">
-        <button *ngIf="rol=='1' || rol=='5'" class="btn card-photo btn-info mt-2 shadow-none " (click)="open1(ww, 'www', 'www')">
-            <mat-icon svgIcon="integrate" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon> Integrase a un curso
-        </button>
 
-        <form *ngIf="rol=='1'" (submit)="getFirstAverages(ciclo, mension, year)" class="d-none">
-          <div class="input-group">
-          <input type="text" class="form-control shadow-none" placeholder="Ciclo" #ciclo  [value]="'I'">
-          <input type="text" class="form-control shadow-none" placeholder="Mensión" #mension  [value]="'P'">
-          <input type="text" class="form-control shadow-none" placeholder="Year" #year  [value]="'2022'">
-          <button class="btn btn-info" [disabled]="loading">Cargar</button>
-        </div>
-        </form>
 
-        <div *ngIf="califications.length!==0 && rol=='3'" class="container text-center ">
-            Boleta de notas Semestre I
-        </div>
-<!--        <div *ngIf="califications.length!==0 && rol=='3'" class="row d-flex justify-content-center align-items-center border">
-            <div class="col-md-4 p-2"  *ngFor="let calification of califications index as i">
-              <div class='cardnew '>
-                  {{calification.title}}-{{calification.nota}}-{{calification.nota*calification.credito}}
+
+    <!--
+    <div  [innerHTML]="froala" contenteditable="true" (blur)="onSelectionChanged($event, ussser._id, ussser.name, ussser.email, ussser.password, ussser.rol, ussser.celular, ussser.carrera, ussser.mension, ussser.ciclo, ussser.sexo, ussser.dni)"></div>
+
+      <quill-editor
+        [(ngModel)]="froala"
+        placeholder="Enter Text"
+        (onSelectionChanged)="onSelectionChanged($event, ussser._id, ussser.name, ussser.email, ussser.password, ussser.rol, ussser.celular, ussser.carrera, ussser.mension, ussser.ciclo, ussser.sexo, ussser.dni)"
+        (onContentChanged)="onContentChanged($event)"
+      ></quill-editor>
+    <ng-katex-html *ngIf="ussser.filosophy" [html]="ussser.filosophy"></ng-katex-html>
+    <textarea  rows="10" cols="0" class="variable-textarea form-control" [(ngModel)]="froala" [ngModelOptions]="{standalone:true}"></textarea>
+
+    <textarea *ngIf="froala && rol=='1' " rows="5" cols="0" class="variable-textarea form-control" [(ngModel)]="froala" [ngModelOptions]="{standalone:true}"
+      (blur)="onSelectionChanged($event, ussser._id, ussser.name, ussser.email, ussser.password, ussser.rol, ussser.celular, ussser.carrera, ussser.mension, ussser.ciclo, ussser.sexo, ussser.dni)"
+    ></textarea>
+  -->
+    <!--<textarea *ngIf="froala!='www'"  [froalaEditor] [(froalaModel)]="froala"></textarea>-->
+    <input type="file" class="d-none" (change)="FileCursse($event)" #Filecurse>
+    <input type="file" class="d-none" (change)="FileCursseUpdate($event)" #FileCurseUpdate>
+
+    <div *ngIf="value > 0" class="fixed-bottom text-warning">
+    {{ loading=='false' ? 'Cargando '+value+'%': ''}}
+    <mat-progress-bar class="fixed-bottom" color="accent" mode="determinate" [value]="value">
+    </mat-progress-bar>
+    </div>
+
+    <h4 class='text-center rounded p-1 my-2'>
+      <button *ngIf="rol=='1'" type="button" name="button"  (click)="Filecurse.click(); Type('image','ussser._id')" class="btn btn-info">
+      Cargar
+      </button>
+        IMAGENES
+    </h4>
+
+      <div *ngIf="ussser" class="row d-flex justify-content-center">
+        <ng-container  *ngFor="let file of ussser index as i">
+          <div *ngIf="file.type=='image'" class="rounded p-1 col-md-6 col-lg-4 col-xl-4">
+            <div class="p-1 bg-light">
+              <div class="h5">{{file.title}}</div>
+              <input *ngIf="rol=='1'" type="text" class="form-control" placeholder="" [value]="file.title"
+              (blur)="FriendUpdate1($event, file._id, file.description, file.blogspot, file.youtube, file.instagram, file.whatsapp, file.facebook )">
+              <div *ngIf="rol=='1'" class="btn-group w-100">
+                <button class="btn btn-danger" (click)="FileCursedelete( file._id)">Eliminar</button>
+                <button *ngIf="rol=='1'" type="button" name="button"  (click)="FileCurseUpdate.click(); Type('www', file._id)" class="btn btn-info">
+                Cambiar
+                </button>
               </div>
+              <button class="btn btn-light p-1" (click)="openfile(filew, file.img)">
+              <img [src]="apiURL+'/'+file.img" class="img-card-top imgcurse" (error)="onImgError($event)">
+              {{file.description}}
+              </button>
+              <textarea *ngIf="rol=='1'" name="name" rows="8" cols="80" type="text" class="form-control" placeholder="blogspot" [value]="file.description"
+              (blur)="FriendUpdate2(file.title, file._id, $event, file.blogspot, file.youtube, file.instagram, file.whatsapp, file.facebook )"></textarea>
+              <input *ngIf="rol=='1'" type="text" class="form-control" placeholder="Blogspot" [value]="file.blogspot"
+              (blur)="FriendUpdate3(file.title, file._id, file.description, $event, file.youtube, file.instagram, file.whatsapp, file.facebook )">
             </div>
           </div>
+        </ng-container>
+      </div>
+
+<h4 class='text-center rounded p-1 my-2'>
+  <button *ngIf="rol=='1'" type="button" name="button"  (click)="FileCurssse('videosyoutube')" class="btn btn-info">Cargar</button>
+  VIDEOS YOUTUBE
+</h4>
+<div *ngIf="ussser" class="row d-flex justify-content-center">
+  <ng-container  *ngFor="let file of ussser index as i">
+    <div *ngIf="file.type=='videosyoutube'" class="rounded p-1 col-md-6 col-lg-4 col-xl-4">
+      <div class="p-1 bg-info">
+        <div class="h5">{{file.title}}</div>
+        <input *ngIf="rol=='1'" type="text" class="form-control" placeholder="" [value]="file.title"
+        (blur)="FriendUpdate1($event, file._id, file.description, file.blogspot, file.youtube, file.instagram, file.whatsapp, file.facebook )">
+        <div *ngIf="rol=='1'" class="btn-group w-100">
+          <button class="btn btn-success" (click)="openfile(filew, file.img)">Ver</button>
+          <button class="btn btn-danger" (click)="FileCursedelete( file._id)">Eliminar</button>
+        </div>
+
+        <youtube-player [videoId]="file.blogspot"></youtube-player>
+          {{file.description}}
+        <textarea *ngIf="rol=='1'" name="name" rows="8" cols="80" type="text" class="form-control" placeholder="Codigo" [value]="file.description"
+        (blur)="FriendUpdate2(file.title, file._id, $event, file.blogspot, file.youtube, file.instagram, file.whatsapp, file.facebook )"></textarea>
+        <input *ngIf="rol=='1'" type="text" class="form-control" placeholder="Codigo youtube" [value]="file.blogspot"
+        (blur)="FriendUpdate3(file.title, file._id, file.description, $event, file.youtube, file.instagram, file.whatsapp, file.facebook )">
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+<h4 class='text-center rounded p-1 my-2'>
+
+  <button *ngIf="rol=='1'" type="button" name="button"  (click)="Filecurse.click(); Type('videosconfidencial',ussser._id)" class="btn btn-info">Cargar</button>
+  VIDEOS CONFIDENCIALES
+</h4>
+<div *ngIf="ussser" class="row d-flex justify-content-center">
+  <ng-container  *ngFor="let file of ussser index as i">
+    <div *ngIf="file.type=='videosconfidencial'" class="rounded p-1 col-md-6 col-lg-4 col-xl-4">
+      <div class="border p-1">
+        <div class="h5 my-0">{{file.title}}</div>
+        <input *ngIf="rol=='1'" type="text" class="form-control" placeholder="" [value]="file.title"
+        (blur)="FriendUpdate1($event, file._id, file.description, file.blogspot, file.youtube, file.instagram, file.whatsapp, file.facebook )">
+
+        <div *ngIf="rol=='1'" class="btn-group w-100">
+          <button *ngIf="rol=='1'" type="button" name="button"  (click)="FileCurseUpdate.click(); Type('www', file._id)" class="btn btn-info">
+          Cambiar video
+          </button>
+
+          <button class="btn btn-danger" (click)="FileCursedelete( file._id)">Eliminar</button>
+        </div>
+            <video id="my_video_1" class="video-js vjs-default-skin" width="100%" controls preload="none"
+            		poster='../assets/img5.jpg'>
+            		<source [src]="apiURL+'/'+ file.img" type="video/mp4" width="100%" height="50px"/>
+             	</video>
+
+              {{file.description}}
+        <textarea *ngIf="rol=='1'" name="name" rows="8" cols="80" type="text" class="form-control" placeholder="Codigo" [value]="file.description"
+        (blur)="FriendUpdate2(file.title, file._id, $event, file.blogspot, file.youtube, file.instagram, file.whatsapp, file.facebook )"></textarea>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+
+
+<h4 class='text-center rounded p-1 my-2'>
+  <button *ngIf="rol=='1'" type="button" name="button"  (click)="Filecurse.click(); Type('documentos',ussser._id)" class="btn btn-info">Cargar</button>
+DOCUMENTOS
+</h4>
+<div *ngIf="ussser" class="row d-flex justify-content-center">
+  <ng-container  *ngFor="let file of ussser index as i">
+    <div *ngIf="file.type=='documentos'" class="rounded p-1 col-md-6 col-lg-4 col-xl-4">
+      <div class="">
+        <div class="h5">{{file.title}}</div>
+        <input *ngIf="rol=='1'" type="text" class="form-control" placeholder="" [value]="file.title"
+        (blur)="FriendUpdate1($event, file._id, file.description, file.blogspot, file.youtube, file.instagram, file.whatsapp, file.facebook )">
+        <div class="">
+        {{file.description}}
+      </div>
+
+        <textarea *ngIf="rol=='1'" name="name" rows="8" cols="80" type="text" class="form-control" placeholder="Codigo" [value]="file.description"
+        (blur)="FriendUpdate2(file.title, file._id, $event, file.blogspot, file.youtube, file.instagram, file.whatsapp, file.facebook )"></textarea>
+        <div class="btn-group w-100">
+          <button *ngIf="rol=='1'" type="button" name="button"  (click)="FileCurseUpdate.click(); Type('www', file._id)" class="btn btn-info">
+          Cambiar
+          </button>
+          <button class="btn btn-success" (click)="openfile(filew, file.img)">Ver</button>
+          <button *ngIf="rol=='1'" class="btn btn-danger" (click)="FileCursedelete( file._id)">Eliminar</button>
+        </div>
+      </div>
+    </div>
+  </ng-container>
+</div>
+
+
+<h4 class='text-center rounded p-1 my-2'>
+    <button *ngIf="rol=='1'" type="button" name="button"  (click)="Filecurse.click(); Type('invitados',ussser._id)" class="btn  btn-warning">
+      Agregar</button>
+      INVITADOS
+      </h4>
+      <div *ngIf="ussser" class="row d-flex justify-content-center my-3">
+        <ng-container  *ngFor="let file of ussser index as i">
+          <div *ngIf="file.type=='invitados'" class="rounded p-1 col-md-6 col-lg-4 col-xl-4">
+            <div class="">
+              <div class="h5 my-1 text-warning">{{file.title}}</div>
+              <input *ngIf="rol=='1'" type="text" class="form-control" placeholder="" [value]="file.title"
+              (blur)="FriendUpdate1($event, file._id, file.description, file.blogspot, file.youtube, file.instagram, file.whatsapp, file.facebook )">
+              <div class="btn-group d-flex ">
+              <button *ngIf="rol=='1'" type="button" name="button"  (click)="FileCurseUpdate.click(); Type('www', file._id)" class="btn btn-info">
+              Cambiar foto
+              </button>
+                <button *ngIf="rol=='1'" class="btn btn-danger" (click)="FileCursedelete( file._id)">Eliminar</button>
+              </div>
+              <button class="btn btn-warning p-1 w-100" (click)="openfile(filew, file.img)">
+                {{file.description}}
+              <img [src]="apiURL+'/'+file.img" class="img-card-top imgcurse" (error)="onImgError($event)">
+              </button>
+              <div class="d-flex justify-content-center align-items-center my-2">
+                <a class="text-dark mx-1" target="_blank" [href]="file.blogspot">
+                  <mat-icon svgIcon="blogspot" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+                </a>
+                <a class="text-dark mx-1" target="_blank" [href]="file.youtube">
+                  <mat-icon svgIcon="youtube" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+                </a>
+                <a class="text-dark mx-1" target="_blank" [href]="file.instagram">
+                  <mat-icon svgIcon="instagram" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+                </a>
+                <a class="text-dark mx-1" target="_blank" [href]="'https://api.whatsapp.com/send?phone=+51' + file.whatsapp + '&text=Hola%20bienvenido'">
+                  <mat-icon svgIcon="watsapp" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+                </a>
+              <a class="text-dark mx-1" target="_blank" [href]="file.facebook">
+                <mat-icon svgIcon="facebook" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+              </a>
+            </div>
+
+
+
+
+            <div *ngIf="rol=='1'" class="">
+              <textarea name="name" rows="5" cols="80" type="text" class="form-control" placeholder="blogspot" [value]="file.description"
+              (blur)="FriendUpdate2(file.title, file._id, $event, file.blogspot, file.youtube, file.instagram, file.whatsapp, file.facebook )"></textarea>
+              <input type="text" class="form-control" placeholder="Blogspot" [value]="file.blogspot"
+              (blur)="FriendUpdate3(file.title, file._id, file.description, $event, file.youtube, file.instagram, file.whatsapp, file.facebook )">
+              <input type="text" class="form-control" placeholder="Youtube" [value]="file.youtube"
+              (blur)="FriendUpdate4(file.title, file._id, file.description, file.blogspot, $event, file.instagram, file.whatsapp, file.facebook )">
+              <input type="text" class="form-control" placeholder="Instagram" [value]="file.instagram"
+              (blur)="FriendUpdate5(file.title, file._id, file.description, file.blogspot, file.youtube, $event, file.whatsapp, file.facebook )">
+              <input type="text" class="form-control" placeholder="Wattsapp" [value]="file.whatsapp"
+              (blur)="FriendUpdate6(file.title, file._id, file.description, file.blogspot, file.youtube, file.instagram, $event, file.facebook )">
+              <input type="text" class="form-control" placeholder="Facebook" [value]="file.facebook"
+              (blur)="FriendUpdate7(file.title, file._id, file.description, file.blogspot, file.youtube, file.instagram, file.whatsapp, $event )">
+            </div>
+
+
+
+            </div>
+          </div>
+        </ng-container>
+      </div>
+    </div>
+
+<!--
+      <h6 class='text-info rounded p-1 my-2'>
+        <button type="button" name="button"  (click)="Filecurse.click(); Type('horario',ussser._id)" class="btn btn-info">Cargar</button>
+wwwwwwwww
+      </h6>
+    <div class="" *ngFor="let file of ussser index as i">
+      <div *ngIf="file.type=='horario'" class=' text-center btn-group w-100 b-warning d-flex' style='padding:.1em'>
+        <input type="text" class="form-control" placeholder="" [value]="file.title" (blur)="onBlurFilosophyUpdate($event, file._id )">
+        <button  class="btn btn-success" (click)="openfile(filew, file.img)">Ver</button>
+        <button  class="btn btn-danger" (click)="FileCursedelete( file._id)">Eliminar</button>
+      </div>
+    </div>
+
+      <h6 class='text-info rounded p-1 my-2'>
+        <button type="button" name="button"  (click)="Filecurse.click(); Type('ocurrencia',ussser._id)" class="btn btn-info">Cargar</button>
+        OCURRENCIAS
+      </h6>
+    <div class="" *ngFor="let file of ussser index as i">
+      <div *ngIf="file.type=='ocurrencia'" class=' text-center btn-group w-100 b-warning d-flex' style='padding:.1em'>
+        <input type="text" class="form-control" placeholder="" [value]="file.title" (blur)="onBlurFilosophyUpdate($event, file._id )">
+        <button  class="btn btn-success" (click)="openfile(filew, file.img)">Ver</button>
+        <button  class="btn btn-danger" (click)="FileCursedelete( file._id)">Eliminar</button>
+      </div>
+    </div>
+
+      <h6 class='text-info rounded p-1 my-2'>
+         <button type="button" name="button"  (click)="Filecurse.click(); Type('plan',ussser._id)" class="btn btn-info">Cargar</button>
+         PLAN DE TRABAJO ANUAL
+      </h6>
+    <div class="" *ngFor="let file of ussser index as i">
+      <div *ngIf="file.type=='plan'" class=' text-center btn-group w-100 b-warning d-flex' style='padding:.1em'>
+        <input type="text" class="form-control" placeholder="" [value]="file.title" (blur)="onBlurFilosophyUpdate($event, file._id )">
+        <button  class="btn btn-success" (click)="openfile(filew, file.img)">Ver</button>
+        <button  class="btn btn-danger" (click)="FileCursedelete( file._id)">Eliminar</button>
+      </div>
+    </div>
+
+      <h6 class='text-info rounded p-1 mt-2'>
+        <button type="button" name="button"  (click)="Filecurse.click(); Type('proyecto',ussser._id)" class="btn btn-info">Cargar</button>
+        PROYECTO propuesta
+
+      </h6>
+    <div class="" *ngFor="let file of ussser index as i">
+      <div *ngIf="file.type=='proyecto'" class=' text-center btn-group w-100 b-warning d-flex' style='padding:.1em'>
+        <input type="text" class="form-control" placeholder="" [value]="file.title" (blur)="onBlurFilosophyUpdate($event, file._id )">
+        <button  class="btn btn-success" (click)="openfile(filew, file.img)">Ver</button>
+        <button  class="btn btn-danger" (click)="FileCursedelete( file._id)">Eliminar</button>
+      </div>
+    </div>
 -->
 
 
 
-    </div>
 
 
 
-
-
-
-
-
+<!--
     <div *ngIf="photointeger.length!==0 && rol=='1' || rol=='3'" class="container text-center mt-3 ">
         CURSOS ESTUDIANTE DEL SEMESTRE
     </div>
@@ -287,14 +517,12 @@ New refresh
   </div>
 </div>
 
-
 <div *ngIf="CurseTeacher.length!==0 && rol=='1' || rol=='2'" class="container text-center h5 mt-3 ">
-
     CURSOS DOCENTE
-
 </div>
+-->
 
-<div *ngIf="user && CurseTeacher.length!==0 ||  rol=='2'" class="row d-flex justify-content-center align-items-center border rounded my-3">
+<!--
 <div class="col-md-4 p-2" *ngFor="let photo of CurseTeacher index as i">
   <div class='card text-align-right border'>
     <div class="text-center text-uppercase">
@@ -316,6 +544,9 @@ New refresh
 
 
 </div>
+-->
+
+<!--
 <div class="container text-center my-1">
   <a class="btn btn-info" href="/user" style='text-decoration:none'>CREAR CURSOS</a>
 </div>
@@ -475,7 +706,7 @@ ACADÉMICA
 </div>
 
 
-
+-->
 
 
 <div class="this2 container-flex p-0 mt-0">
@@ -531,22 +762,27 @@ NANCY VIZA
   Teléfono: 9668783575
 </p>
 
-<a class="text-dark mx-1" target="_blank" href="https://api.whatsapp.com/send?phone=+51 966999215&text=Hola%20bienvenido">
+
+
+<a class="text-dark mx-1" target="_blank" href="https://www.facebook.com/nancyvizaarte/">
+  <mat-icon svgIcon="facebook" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+</a>
+<a class="text-dark mx-1" target="_blank" href="https://api.whatsapp.com/send?phone=+51 992519877&text=Hola%20Nancy%20Viza">
 <mat-icon svgIcon="watsapp" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
 </a>
-<a class="text-dark" target="_blank" href="https://m.me/bellasartes.ayacucho">
+<a class="text-dark mx-1" target="_blank" href="https://twitter.com/nancyviza">
+<mat-icon svgIcon="twitter" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
+</a>
+<a class="text-dark" target="_blank" href="https://m.me/nancyviza">
 <mat-icon svgIcon="messenger" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
 </a>
-<a class="text-dark mx-1" target="_blank" href="https://bellasartes.blogspot.com">
+<a class="text-dark mx-1" target="_blank" [href]="">
 <mat-icon svgIcon="blogspot" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
 </a>
-<a class="text-dark mx-1" target="_blank" href="https://web.facebook.com/bellasartes.ayacucho">
-<mat-icon svgIcon="facebook" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
-</a>
-<a class="text-dark mx-1" target="_blank" href="https://instagram.com/bellasartes.ayacucho">
+<a class="text-dark mx-1" target="_blank" href="https://www.instagram.com/nancy.viza/">
 <mat-icon svgIcon="instagram" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
 </a>
-<a class="text-dark mx-1" target="_blank" href="https://www.youtube.com/channel/UCkYf1NyZ1kUl3965WgeL6rw">
+<a class="text-dark mx-1" target="_blank" href="https://www.youtube.com/channel/UC5aK8VIWGp_LNPbaeIZcD7A">
   <mat-icon svgIcon="youtube" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>
 </a>
 </div>

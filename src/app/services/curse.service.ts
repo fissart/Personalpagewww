@@ -32,18 +32,30 @@ export class CurseService {
       fd.append('type', type);
       fd.append('codigo', codigo);
       fd.append('curse', id);
+      fd.append('description', "Describa el archivo");
       fd.append('image', photo);
       return this.http.post(`${environment.apiURL}/api/FilecurseTeacher/`, fd, {reportProgress:true, observe:"events"});
     }
+
+    getfiles() {
+            return this.http.get(`${environment.apiURL}/api/FilecurseTeacher`);
+    }
+
 
     filecursedelete(id: string) {
         return this.http.delete(`${environment.apiURL}/api/FilecurseTeacher/${id}`);
       }
 
-    filecurseupdate(id: string, title: string) {
-        return this.http.put(`${environment.apiURL}/api/FilecurseTeacher/${id}`, {'title':title });
-  }
+      filecurseupdate(id: string, title: string, description: string, blogspot: string, youtube: string, instagram: string, whatsapp: string, facebook: string) {
+          return this.http.put(`${environment.apiURL}/api/FilecurseTeacher/${id}`, {'title':title, 'description': description, blogspot, youtube, instagram, whatsapp, facebook });
+    }
 
+    filecurseupdatefile(id: string, photo:File) {
+          const fd = new FormData();
+          fd.append('image', photo);
+          return this.http.put(`${environment.apiURL}/api/FilecurseTeacher/update/${id}`, fd, {reportProgress:true, observe:"events"});
+  }
+  
 /*
   filecurse(curse: string, title: string, www: File ) {
     const fd = new FormData();

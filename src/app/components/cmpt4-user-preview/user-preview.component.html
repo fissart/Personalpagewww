@@ -20,39 +20,40 @@
             <input type="text" class="form-control shadow-none" [disabled]="userrol == '1'? false: true" placeholder="Photo's Title" [value]="$any(photow).email" #correo required>
         </div>
 
-        <div class="col-md-3 form-group mb-2 py-0 px-1">
+        <div class="col-md-6 form-group mb-2 py-0 px-1">
             <label class="form-label">Password</label>
             <input type="text" class="form-control shadow-none" placeholder="Photo's Title" [value]="$any(photow).password" #password>
         </div>
 
-        <div class="col-md-3 form-group mb-2 py-0 px-1">
+        <div class="d-none col-md-3 form-group mb-2 py-0 px-1">
             <label class="form-label">Celular</label>
             <input type="text" class="form-control shadow-none" [disabled]="userrol == '1'? false: true" placeholder="Photo's Title" [value]="$any(photow).celular"  #celular>
           </div>
 
-        <div class="col-md-6 form-group mb-2 py-0 px-1">
+        <div class="d-none col-md-6 form-group mb-2 py-0 px-1">
             <label class="form-label">Carrera</label>
             <input type="text" class="form-control shadow-none" [disabled]="userrol == '1'? false: true" placeholder="Photo's Title" [value]="$any(photow).carrera"  #carrera>
         </div>
-        <div class="col-md-3 form-group mb-2 py-0 px-1">
+        <div class="d-none col-md-3 form-group mb-2 py-0 px-1">
             <label class="form-label">Mensión (ED, P, G, E)</label>
             <input type="text" class="form-control shadow-none" [disabled]="userrol == '1'? false: true" placeholder="Photo's Title" [value]="$any(photow).mension"  #mension>
         </div>
-        <div class="col-md-1 form-group mb-2 py-0 px-1">
+        <div class="d-none col-md-1 form-group mb-2 py-0 px-1">
           <label class="form-label">Ciclo</label>
           <input type="text" class="form-control shadow-none" [disabled]="userrol == '1'? false: true" placeholder="Photo's Title" [value]="$any(photow).ciclo"  #ciclo>
         </div>
 
-        <div class="col-md-3 form-group mb-2 py-0 px-1">
+        <div class="d-none col-md-3 form-group mb-2 py-0 px-1">
             <label class="form-label">Sexo</label>
             <input type="text" class="form-control shadow-none" [disabled]="userrol == '1'? false: true" placeholder="Photo's Title" [value]="$any(photow).sexo"  #sexo>
         </div>
 
-        <div class="col-md-3 form-group mb-2 py-0 px-1">
+        <div class="d-none col-md-3 form-group mb-2 py-0 px-1">
             <label class="form-label">DNI</label>
             <input type="text" class="form-control shadow-none" [disabled]="userrol == '1'? false: true" placeholder="Photo's Title" [value]="$any(photow).dni"  #dni>
         </div>
-        <div class="col-md-2 form-group mb-2 py-0 px-1">
+
+        <div class="col-md-6 form-group mb-2 py-0 px-1">
             <label class="form-label">Rol</label>
             <input type="text" class="form-control shadow-none"  [disabled]="userrol == '1'? false: true" placeholder="Rol" [value]="$any(photow).rol" #rol>
          </div>

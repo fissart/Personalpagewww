@@ -20,6 +20,16 @@ export class Svc14MVService {
       return this.http.post(`${environment.apiURL}/api/MV`, fd );
     }
 
+    savve(user:string, type: string , subtype: string ) {
+        const fd = new FormData();
+        fd.append('title', "Título");
+        fd.append('description', "Breve  descripción");
+        fd.append('user', user);
+        fd.append('type', type);
+        fd.append('subtype', subtype);
+        return this.http.post(`${environment.apiURL}/api/MV`, fd );
+      }
+
   getupdate(user:any) {
       console.log(user)
       return this.http.get<any>(`${environment.apiURL}/api/MV/${user}`);
@@ -37,6 +47,11 @@ export class Svc14MVService {
     console.log(type);
       return this.http.get<any>(`${environment.apiURL}/api/MV/controller/${type}`);
     }
+
+    gettts(type : string, idexpo : string) {
+      console.log(type);
+        return this.http.get<any>(`${environment.apiURL}/api/MV/contttroller/${type}/${idexpo}`);
+      }
 
   remove(id: string ) {
       return this.http.delete(`${environment.apiURL}/api/MV/${id}`);

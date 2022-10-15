@@ -21,6 +21,7 @@
       data: any = [];
       public photoSelected!: string | ArrayBuffer | null;
       type!: string;
+      idexpo!:string;
       name!: string;
       id!: string;
       public archivos: any = [];
@@ -69,7 +70,7 @@
       };
 
       gets(){
-      this.Service.gets("APe")
+      this.Service.gettts("APe", this.idexpo)
       .subscribe(
       (res: any) => {
       this.data = res;
@@ -80,14 +81,15 @@
       }
 
       ngOnInit(): void {
+      this.idexpo=this.router.snapshot.paramMap.get('id')+'';
       this.router.params.subscribe(params => {
       console.log(localStorage.getItem('idcurso') || "" )
       this.gets()
       });
       }
 
-      create() {
-      this.Service.save(localStorage.getItem('id') || "", "APe")
+      create(subtype:string) {
+      this.Service.savve(this.idexpo, "APe", subtype)
       .subscribe(
       (res: any) => {
       console.log(res);
@@ -124,7 +126,7 @@
       this.title = title;
       this.img = file;
       this.markdown = description;
-      this.modal.open(w, { size: 'xl', scrollable: false })
+      this.modal.open(w, { size: 'xl', scrollable: true })
       }
 
       updatenews(title: HTMLInputElement, description: HTMLTextAreaElement ) {

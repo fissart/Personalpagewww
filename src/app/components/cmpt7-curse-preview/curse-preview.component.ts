@@ -190,7 +190,7 @@ text:string=""
         onBlurFilosophyUpdate(event:any, id: string) {
         console.log(event.target.value);
   console.log(id);
-  this.photoService.filecurseupdate(id, event.target.value)
+  this.photoService.filecurseupdate(id, event.target.value, "", "", "", "", "", "")
   .subscribe((res: any) => {
     this.getcurse();
     //this.usser();

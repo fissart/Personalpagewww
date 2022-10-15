@@ -16,7 +16,7 @@ export class UsersService {
   //obtener usuario con opiniones
   getUser() {
   //console.log(localStorage.getItem('id'))
-    return this.http.get<any>(`${this.URI}/Controller/${localStorage.getItem('id')}`);
+    return this.http.get<any>(`${this.URI}/Controller/633e0130043a66dd23991dbe`);
   }
 
   getUserTeacher(id:string) {
