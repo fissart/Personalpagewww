@@ -2,7 +2,7 @@
     <app-navigation></app-navigation>
 </div>
 <div class="height"></div>
-
+<!--sub_exposiciones-->
 <ng-template #ww let-modal>
   <form class="container p-3" (submit)="updatenews(_title, description)">
       <div class="row p-0">
@@ -98,8 +98,11 @@
       <div *ngIf="doc.subtype=='folder'" class="rounded p-2 col-md-4">
         <div class="bounce p-3" style="background:orange; border-radius:1em">
         <a class="btn w-100 p-0 text-light" [href]="'/sub_exposiciones/' + doc._id" style='text-decoration:none'>
-          <div style="font-family: 'Brush Script MT'" class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
-            <img src="../../assets/folder.svg" class="img-fluid w-100">    <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+          <div class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
+          <div *ngIf="doc.file" class="p-0">
+            <img *ngIf="doc.file.split('.').pop()=='png'||doc.file.split('.').pop()=='JPG'||doc.file.split('.').pop()=='jpg'||doc.file.split('.').pop()=='jpeg'||doc.file.split('.').pop()=='svg'||doc.file.split('.').pop()=='webp'" [src]="apiUrl+'/'+ doc.file" class="img-fluid w-70" (error)="onImgError($event)">
+          </div>
+          <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
               <ng-katex-html class="d-none" *ngIf="doc.description" [html]="doc.description.substring(0,100)+'...'"></ng-katex-html>
         </a>
         <div  class="p-0 text-center btn-group d-flex">
@@ -119,14 +122,14 @@
 
 <div class="row my-3 justify-content-center">
   <ng-container *ngFor="let doc of data index as i">
-      <div *ngIf="doc.subtype=='imagen'" class="rounded p-2 col-md-4">
+      <div *ngIf="doc.subtype=='imagen'" class="rounded p-2 col-md-4" [style.background-image]="'url(' + apiUrl+'/'+ doc.file + ')'">
         <div class="bounce p-1 bg-warning">
           <a class="btn p-0 w-100" (click)="open2(w, doc._id, doc.title, doc.description, doc.file)">
-          <div style="font-family: 'Brush Script MT'" class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
+          <div class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
           <div *ngIf="doc.file" class="p-0">
             <img *ngIf="doc.file.split('.').pop()=='png'||doc.file.split('.').pop()=='JPG'||doc.file.split('.').pop()=='jpg'||doc.file.split('.').pop()=='jpeg'||doc.file.split('.').pop()=='svg'||doc.file.split('.').pop()=='webp'" [src]="apiUrl+'/'+ doc.file" class="img-fluid w-70" (error)="onImgError($event)">
           </div>
-              <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+              <ng-katex-html class="d-none" *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
               <ng-katex-html class="d-none" *ngIf="doc.description" [html]="doc.description.substring(0,100)+'...'"></ng-katex-html>
           </a>
           <div  class="p-0 text-center btn-group d-flex">
@@ -148,7 +151,7 @@
       <div *ngIf="doc.subtype=='documento'" class="rounded p-2 col-md-4">
         <div class="bounce p-1 bg-success">
           <a class="btn w-100 text-light" (click)="open2(w, doc._id, doc.title, doc.description, doc.file)">
-          <div style="font-family: 'Brush Script MT'" class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
+          <div class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
             <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
         </a>
           <div  class="p-0 text-center btn-group d-flex">

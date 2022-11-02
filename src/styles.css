@@ -6,9 +6,8 @@
 
 body{
 
+  background: linear-gradient(to bottom, rgb(232,232,232), rgb(232,232,232));
 /*
-background: linear-gradient(to bottom, rgb(0,0,0), rgb(50,0,200));
-background: linear-gradient(to bottom, rgb(0,0,0), rgb(150,0,70));
 background: url("/assets/negz.jpg");
 */
 background-size: 100%;
@@ -16,11 +15,23 @@ min-height: 10vh;
 background-attachment: fixed;
 }
 
-iframe {width:100%  
+
+.jumbo{
+  background: url("/assets/ww_w.jpg");
+  background-size: cover;
+  color:white
+}
+
+.transparentjumbo {
+    background: rgba(250,250,200,0.3);
+}
+
+
+iframe {width:100%
 }
 
 .nav {
-  background: white;
+  background: linear-gradient(to bottom, rgb(232,232,232), rgb(232,232,232));
 
   /*
   background: linear-gradient(to bottom, rgb(50,0,200), rgb(0,0,0));

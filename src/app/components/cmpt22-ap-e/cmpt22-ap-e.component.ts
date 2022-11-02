@@ -145,6 +145,7 @@
       this.value = 0;
       this.name = "";
       this.photoSelected=""
+      this.archivos = [];
       }
       },
       err => console.log(err)

@@ -115,9 +115,9 @@
 
 
 
-<div *ngIf="data.length!==0" class="container py-1 px-0">
-<div class='h4 rounded text-center text-success my-0'>EXPOSICIONES INDIVIDUALES
-<button *ngIf="rol=='5' || rol=='1'" class="btn btn-info" (click)="create('individual')">Crear</button>
+<div  class="container py-1 px-0">
+<div class = 'card h4 rounded text-center text-success my-0 p-0'>EXPOSICIONES INDIVIDUALES
+<button *ngIf="rol=='5' || rol=='1'" class="btn btn-success" (click)="create('individual')">Crear</button>
 </div>
 <div class="row border border-success justify-content-center">
   <ng-container *ngFor="let doc of data index as i">
@@ -141,8 +141,8 @@
   </ng-container>
 </div>
 
-<div class='h4 rounded text-center text-warning my-0 mt-3'>EXPOSICIONES BIPERSONALES
-  <button *ngIf="rol=='5' || rol=='1'" class="btn btn-info" (click)="create('bipersonal')">Crear</button>
+<div class='card h4 rounded text-center text-warning my-0 mt-3'>EXPOSICIONES BIPERSONALES
+  <button *ngIf="rol=='5' || rol=='1'" class="btn btn-warning" (click)="create('bipersonal')">Crear</button>
 </div>
 
 <div class="row border border-warning justify-content-center bg-ligth">
@@ -169,7 +169,7 @@
 
 
 
-<div class='h4 rounded text-center text-info my-0 mt-3'>EXPOSICIONES GRUPALES
+<div class='card h4 rounded text-center text-info my-0 mt-3'>EXPOSICIONES GRUPALES
   <button *ngIf="rol=='5' || rol=='1'" class="btn btn-info" (click)="create('grupal')">Crear</button>
 </div>
 

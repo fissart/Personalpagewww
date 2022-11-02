@@ -35,8 +35,8 @@
   private modal: NgbModal,
   ) { }
   capturandoFile(event: any) {
+    this.archivos = [];
   const ww = event.target.files[0];
-  this.archivos = [];
   this.archivos.push(ww);
   if (event.target.files[0]) {
   this.type = event.target.files[0].type;
@@ -147,6 +147,7 @@
   this.value = 0;
   this.name = "";
   this.photoSelected=""
+  this.archivos = [];
   }
   },
   err => console.log(err)

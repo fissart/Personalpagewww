@@ -111,7 +111,7 @@ name: string = ""
     ww = [];
 
     onImgError(event: any) {
-        event.target.src = './assets/yo.jpg'
+        event.target.src = './assets/img7.jpg'
     }
 
     public isCollapsed = false;
