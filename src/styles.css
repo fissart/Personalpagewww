@@ -4,8 +4,15 @@
 @import '~swiper/modules/pagination/pagination.min.css';
 @import '~quill/dist/quill.snow.css';
 
-body{
+html *
+{
+   font-size: 1em !important;
+   color: #000 !important;
+   font-family: Arial !important;
+}
 
+body{
+  font-size: .95em !important;
   background: linear-gradient(to bottom, rgb(232,232,232), rgb(232,232,232));
 /*
 background: url("/assets/negz.jpg");
@@ -258,8 +265,8 @@ blockquote {
     /*wobble flip bounce jello pulse referring directly to the animation's @keyframe declaration */
     animation-duration: 0.5s;
     /* don't forget to set a duration!
-    */
     background-color: rgb(21, 160, 148);
+    */
 }
 
 .jello {

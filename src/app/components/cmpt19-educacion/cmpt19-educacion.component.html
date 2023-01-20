@@ -17,7 +17,7 @@
                       <textarea rows="5" cols="0" class="variable-textarea form-control" [(ngModel)]="markdown" [ngModelOptions]="{standalone:true}" [value]="description" #description></textarea>
                   </div>
                    <div class="form-group mb-3 col-md-7">
-                    <ng-katex-html [html]="markdown"></ng-katex-html>
+                    <ng-katex-html *ngIf="markdown" [html]="markdown"></ng-katex-html>
                   </div>
               </div>
           </div>
@@ -93,20 +93,27 @@
 
 
   <div class="bg-ligth">
-    <div class="p-2 card-photo" *ngFor="let doc of data index as i">
-      <a class="btn w-100 p-0" [href]="'/sub_proyectos/' + doc._id" style='text-decoration:none' [style.background-image]="'url(' + apiUrl+'/'+ doc.file + ')'">
-        <div class="container d-flex rounded p-2" style="background: rgba(250,250,250,0.3);">
-          <div *ngIf="doc.file" class="p-1 col-md-6">
-            <img *ngIf="doc.file.split('.').pop()=='png'||doc.file.split('.').pop()=='jpg'||doc.file.split('.').pop()=='jpeg'||doc.file.split('.').pop()=='svg'||doc.file.split('.').pop()=='webp'" [src]="apiUrl+'/'+ doc.file" class="img-fluid w-100" (error)="onImgError($event)">
-          </div>
-          <div *ngIf="!doc.file" class="p-1 text-center col-md-6">
-            <img src="../../../assets/img5.jpg" class="img-fluid w-100" (error)="onImgError($event)">
+    <div class="p-0 card-photo" *ngFor="let doc of data index as i">
+      <a class="btn w-100" [href]="'/sub_projects/' + doc._id" style='text-decoration:none'>
+        <div class="rounded" [ngStyle]="{background:'url('+apiUrl+'/'+doc.file+')', 'background-size': '50000px 50000px'}">
+        <div class="container d-flex p-2" style="background: rgba(250,250,250,0.5)">
+          <div *ngIf="i % 2 === 0" class="p-1 col-md-6">
+            <img [src]="apiUrl+'/'+ doc.file" class="img-fluid w-100" (error)="onImgError($event)">
           </div>
           <div class="p-1 col-md-6">
             <span class="text-uppercase h5">{{doc.title}}</span>
             <hr>
-            <ng-katex-html *ngIf="doc" [html]="doc.description"></ng-katex-html>
+            <div style="padding-left:1em;text-align: justify">
+            <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+            </div>
           </div>
+
+          <div *ngIf="i % 2 !== 0" class="p-1 col-md-6">
+            <img [src]="apiUrl+'/'+ doc.file" class="img-fluid w-100" (error)="onImgError($event)">
+          </div>
+
+
+        </div>
         </div>
       </a>
     <div  class="p-0 btn-group d-flex">

@@ -17,7 +17,7 @@
                       <textarea rows="5" cols="0" class="variable-textarea form-control" [(ngModel)]="markdown" [ngModelOptions]="{standalone:true}" [value]="description" #description></textarea>
                   </div>
                    <div class="form-group mb-3 col-md-7">
-                    <ng-katex-html [html]="markdown"></ng-katex-html>
+                    <ng-katex-html *ngIf="markdown" [html]="markdown"></ng-katex-html>
                   </div>
               </div>
           </div>
@@ -94,15 +94,18 @@
 
     <div class="row my-3 justify-content-center bg-ligth">
       <ng-container *ngFor="let doc of data index as i">
-          <div *ngIf="doc.subtype=='folder'" class="rounded col-md-4">
-            <div class="border bounce">
-            <a class="btn w-100 text-dark" [href]="'/sub_proyectos/' + doc._id" style='text-decoration:none'>
+          <div *ngIf="doc.subtype=='folder'" class="rounded col-md-6">
+            <div class="bg-info bounce" [ngStyle]="{background:'url('+apiUrl+'/'+doc.file+')', 'background-size': '50000px 50000px'}">
+              <div  class="p-1" style="background: rgba(250,250,250,0.3);">
+                  <a class="btn w-100 text-dark" [href]="'/sub_projects/' + doc._id" style='text-decoration:none'>
               <div class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
 
               <div *ngIf="doc.file" class="p-0">
                 <img *ngIf="doc.file.split('.').pop()=='png'||doc.file.split('.').pop()=='JPG'||doc.file.split('.').pop()=='jpg'||doc.file.split('.').pop()=='jpeg'||doc.file.split('.').pop()=='svg'||doc.file.split('.').pop()=='webp'" [src]="apiUrl+'/'+ doc.file" class="img-fluid w-70" (error)="onImgError($event)">
               </div>
-                  <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+              <div style="text-align: justify">
+              <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+              </div>
             </a>
             <div  class="p-0 text-center btn-group d-flex">
                 <button *ngIf="rol=='5' || rol=='1'" class="btn btn-danger" (click)="delete(doc._id)">Eliminar</button>
@@ -111,6 +114,7 @@
                 <button *ngIf="rol=='5' || rol=='1'" class="btn btn-warning " (click)="open2(w, doc._id, doc.title, doc.description, doc.file)">Archivo</button>
                </div>
              </div>
+           </div>
           </div>
       </ng-container>
     </div>
@@ -123,13 +127,16 @@
     <div class="row my-3 justify-content-center bg-ligth">
       <ng-container *ngFor="let doc of data index as i">
           <div *ngIf="doc.subtype=='imagen'" class="rounded p-2 col-md-6">
-            <div class="bounce bg-warning p-1">
+            <div class="bg-info bounce" [ngStyle]="{background:'url('+apiUrl+'/'+doc.file+')', 'background-size': '50000px 50000px'}">
+              <div  class="p-1" style="background: rgba(250,250,250,0.3);">
               <a class="btn p-0 w-100" (click)="open2(w, doc._id, doc.title, doc.description, doc.file)">
               <div class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
               <div *ngIf="doc.file" class="p-0">
                 <img *ngIf="doc.file.split('.').pop()=='png'||doc.file.split('.').pop()=='JPG'||doc.file.split('.').pop()=='jpg'||doc.file.split('.').pop()=='jpeg'||doc.file.split('.').pop()=='svg'||doc.file.split('.').pop()=='webp'" [src]="apiUrl+'/'+ doc.file" class="img-fluid w-70" (error)="onImgError($event)">
               </div>
-                  <ng-katex-html class="d-none" *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+              <div style="text-align: justify">
+              <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+              </div>
               </a>
               <div  class="p-0 text-center btn-group d-flex">
                 <button *ngIf="rol=='5' || rol=='1'" class="btn btn-danger" (click)="delete(doc._id)">Eliminar</button>
@@ -137,6 +144,7 @@
                 </button>
                </div>
              </div>
+           </div>
           </div>
       </ng-container>
     </div>
@@ -147,11 +155,13 @@
 
     <div class="row my-3 justify-content-center bg-ligth">
       <ng-container *ngFor="let doc of data index as i">
-          <div *ngIf="doc.subtype=='documento'" class="rounded p-2 col-md-4">
+          <div *ngIf="doc.subtype=='documento'" class="rounded p-2 col-md-6">
             <div class="bounce p-0 bg-success p-1">
               <a class="btn w-100" (click)="open2(w, doc._id, doc.title, doc.description, doc.file)">
               <div class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
-                <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+              <div style="text-align: justify">
+              <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+              </div>
             </a>
               <div  class="p-0 text-center btn-group d-flex">
                 <button *ngIf="rol=='5' || rol=='1'" class="btn btn-danger" (click)="delete(doc._id)">Eliminar</button>
@@ -163,4 +173,33 @@
           </div>
       </ng-container>
     </div>
+
+    <div *ngIf="rol=='5' || rol=='1'" class="row d-flex justify-content-center align-items-center bg-ligth">
+      Crear youtube
+    <input type="text" class="form-control" placeholder="Código youtube"
+    (blur)="creatte($event, 'youtube')">
+    </div>
+
+    <div class="row my-3 justify-content-center bg-ligth">
+      <ng-container *ngFor="let doc of data index as i">
+          <div *ngIf="doc.subtype=='youtube'" class="rounded p-2 col-md-6">
+            <div class="bounce p-0 bg-light p-1 rounded">
+              <div class="text-uppercase h5 text-center my-0">{{doc.title}}</div>
+        <youtube-player [videoId]="doc.url"></youtube-player>
+        <div style="text-align: justify">
+          <ng-katex-html *ngIf="doc.description" [html]="doc.description"></ng-katex-html>
+        </div>
+
+              <div  class="p-0 text-center btn-group d-flex">
+                <button *ngIf="rol=='5' || rol=='1'" class="btn btn-danger" (click)="delete(doc._id)">Eliminar</button>
+                <button *ngIf="rol=='5' || rol=='1'" class="btn btn-primary" (click)="open1(ww, doc._id, doc.title, doc.description, doc.file)">Editar
+                </button>
+               </div>
+
+             </div>
+          </div>
+      </ng-container>
+    </div>
+
+
     </div>

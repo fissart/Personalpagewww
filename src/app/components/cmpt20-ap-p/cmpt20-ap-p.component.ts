@@ -101,6 +101,21 @@
   )
   }
 
+creatte(event: any , subtype:string) {
+console.log(event.target.value);
+
+  this.Service.savvve(this.idexpo, "APe", subtype, event.target.value)
+  .subscribe(
+  (res: any) => {
+  console.log(res);
+  this.gets()
+  },
+  err => console.log(err)
+  )
+  /*
+*/
+  }
+
 
   delete(id:string) {
   if (window.confirm('Desea borrar este documento?')) {
@@ -137,8 +152,6 @@
   (res: any) => {
   this.loading = "false";
   this.value = Math.round((100 / res.total) * res.loaded);
-  console.log(res.total);
-  console.log(res.loaded);
   if (res.total == res.loaded && res.type > 0) {
   this.loading = "";
   this.modal.dismissAll();

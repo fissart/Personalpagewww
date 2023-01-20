@@ -5,6 +5,7 @@ const schema = new Schema({
     subtype: String,
     description: String,
     file: String,
+    url: String,
     user: {
       type: Schema.Types.ObjectId,
     },
@@ -18,6 +19,7 @@ export interface ICollection extends Document {
   subtype: string,
   description: string,
   file: string,
+  url: string,
   user: {
     type: Schema.Types.ObjectId,
   },

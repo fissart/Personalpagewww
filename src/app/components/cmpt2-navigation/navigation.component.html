@@ -21,7 +21,7 @@
             </a>
 
         </ng-template>
-        <button class="navbar-toggler btn btn-light bg-light shadow-none" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
+        <button class="navbar-toggler btn shadow-none" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation" (click)="isCollapsed = !isCollapsed" [attr.aria-expanded]="!isCollapsed" aria-controls="navbarTogglerDemo02">
             <mat-icon color='white' svgIcon="www" aria-hidden="false"></mat-icon>
         </button>
 
@@ -48,21 +48,21 @@
 
 
               <li class="nav-item">
-                  <a class="nav-link font-bold" href="/">INICIO</a>
+                  <a class="nav-link font-bold" href="/">HOME</a>
               </li>
               <li class="nav-item">
                   <a class="nav-link font-bold" href="/Cmpt14MVComponent">BIO</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link font-bold" href="/proyectos">PROYECTOS</a>
+                <a class="nav-link font-bold" href="/projects">PROJECTS</a>
               </li>
               <li class="nav-item">
-                  <a class="nav-link font-bold" href="/exposiciones">EXPOSICIONES</a>
+                  <a class="nav-link font-bold" href="/expositions">EXPOS</a>
               </li>
 
               <li class="nav-item">
-                <a class="nav-link font-bold" href="/textos">TEXTOS</a>
+                <a class="nav-link font-bold" href="/texts">TEXTS</a>
               </li>
 
               <li class="nav-item dropdown d-none">
@@ -123,10 +123,10 @@
                 </li>
                 <ng-container *ngIf="!authService.loggedIn(); else loggedIn">
                   <li class="nav-item">
-                      <a class="nav-link font-bold" routerLink="/login">INICIAR</a>
+                      <a class="nav-link font-bold" routerLink="/login">LOGIN</a>
                   </li>
                   <li class="nav-item">
-                      <a class="nav-link font-bold" routerLink="/registro">Register</a>
+                      <a class="nav-link font-bold" routerLink="/registro">REGISTER</a>
                   </li>
 
                 </ng-container>

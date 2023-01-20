@@ -6,8 +6,17 @@ import Book, { IBook } from '../1.models/9_Book';
 //createController///////////////////////////////////////////////////////////////////////
 export async function createController(req: Request, res: Response): Promise<Response> {
     const { title, description, user, type, subtype } = req.body;
-    //console.log(req.body);
+    console.log(req.body);
     const newDate = { title, description, user, type, subtype};
+    const data = new Collection(newDate);
+    await data.save();
+    return res.json({ message: 'Ok create' });
+};
+//createController///////////////////////////////////////////////////////////////////////
+export async function createControllerurl(req: Request, res: Response): Promise<Response> {
+    const { title, description, user, type, subtype, url } = req.body;
+    console.log(req.body);
+    const newDate = { title, description, user, type, subtype, url};
     const data = new Collection(newDate);
     await data.save();
     return res.json({ message: 'Ok create' });

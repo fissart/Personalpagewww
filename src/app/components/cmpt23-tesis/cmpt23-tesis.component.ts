@@ -121,8 +121,6 @@
       this.id = id;
       this.title = title;
       this.subtype = type;
-      console.log(this.subtype);
-
       this.img = file;
       this.author = author;
       this.markdown = description;

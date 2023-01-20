@@ -58,7 +58,7 @@
   }
 
   onImgError(event: any) {
-  event.target.src = '../../../assets/img7.jpg'
+  event.target.src = '../../../assets/img5.jpg'
   }
 
   options = {

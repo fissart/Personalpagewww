@@ -4,8 +4,8 @@ import path from 'path'
 //import Responce, { IResponce } from '../1.models/8_Responce';
 import Cursesource, { ICursesource } from '../1.models/sourcecurse';
 import User, { IUser } from '../1.models/1_User';
-import Average, { IAverage } from '../1.models/10_Average';
-
+import Average, { IAverage } from '../1.models/10_average';
+  
 //createController///////////////////////////////////////////////////////////////////////
 export async function createController(req: Request, res: Response): Promise<Response> {
     const { nota, teacher, user, curse, title, ciclo, credito, especialidad, year } = req.body;
