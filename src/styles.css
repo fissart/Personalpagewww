@@ -13,7 +13,7 @@ html *
 
 body{
   font-size: .95em !important;
-  background: linear-gradient(to bottom, rgb(232,232,232), rgb(232,232,232));
+  background: linear-gradient(to bottom, rgb(32,32,232), rgb(72,232,232));
 /*
 background: url("/assets/negz.jpg");
 */
@@ -38,7 +38,7 @@ iframe {width:100%
 }
 
 .nav {
-  background: linear-gradient(to bottom, rgb(232,232,232), rgb(232,232,232));
+  background: linear-gradient(to bottom, rgb(232,212,232), rgb(12,232,232));
 
   /*
   background: linear-gradient(to bottom, rgb(50,0,200), rgb(0,0,0));
@@ -308,8 +308,9 @@ blockquote {
     width: 81px;
     height: 81px;
     overflow: hidden;
-    border-radius: 50%;
+    border-radius: 30%;
     object-fit: cover;
+    border: 1px solid rgb(0, 0, 0);
 }
 
 .wrapperest12 {

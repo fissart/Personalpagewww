@@ -160,15 +160,15 @@ New refresh
     <div class="jumbotron col-md-12 p-1">
       <h1 class="display-4 p-1"> Hola mundo!</h1>
       <p class="lead">
-        Artista plástica y gestora cultural
+        Lorem wwwwwwwwwwwwww
       </p>
       <hr class="my-4">
       <p>
-        Egresé de la Especialidad de Pintura en la Escuela Nacional Superior Autónoma de Bellas Artes del Perú 2004. Complementé mi carrera como artista plástico con un bachillerato en Arte en la Unidad de Post grado de la Facultad de letras y ciencias Humanas de la UNMSM.
+        Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
       </p>
 
         <a class="btn btn-light" href="/Cmpt14MVComponent" role="button">Saber más</a>
-      
+
     </div>
 
   </div>
@@ -178,7 +178,7 @@ New refresh
   <div class="container rounded border " style="padding:1em">
 <swiper class="border p-0" *ngIf="newws.length!==0" [autoplay]="{delay: 2000, disableOnInteraction: true}"
     [config]="config">
-        <ng-template swiperSlide *ngFor="let photo of newws index as i" class="" [ngStyle]="{background:'url('+apiURL+'/'+photo.img+')', 'background-size': '50000px 50000px'}">
+        <ng-template swiperSlide *ngFor="let photo of newws index as i" class="" [ngStyle]="{background:'url('+apiURL+'/'+photo.img+')', 'background-size': '500000px 500000px'}">
           <button class="btn btn-info border" (click)="openwww(new, photo.title, photo.description, photo.img)">
             <img [src]="apiURL+'/'+photo.img" (error)="onImgError($event)">
             <div class="w-75 text-light h5 py-5 rounded border" style="position: absolute; left: 50%; bottom:30%;transform: translate(-50%, -50%); background:rgba(210,210,210, 0.5)">
@@ -253,10 +253,10 @@ New refresh
     </div>
 
     <h4 class='text-center rounded p-1 my-2'>
+        <h5>IMAGENES</h5>
       <button *ngIf="rol=='1'" type="button" name="button"  (click)="Filecurse.click(); Type('image','ussser._id')" class="btn btn-info">
       Cargar
       </button>
-        IMAGENES
     </h4>
 
       <div *ngIf="ussser" class="row d-flex justify-content-center">
@@ -288,8 +288,8 @@ New refresh
       </div>
 
 <h4 class='text-center rounded p-1 my-2 mt-5'>
-  <button *ngIf="rol=='1'" type="button" name="button"  (click)="FileCurssse('videosyoutube')" class="btn btn-info">Cargar</button>
-  VIDEOS YOUTUBE
+  <h5>VIDEOS YOUTUBE</h5>
+  <button *ngIf="rol=='1'" type="button" name="button"  (click)="FileCurssse('videosyoutube')" class="btn btn-info">Generar y poner código</button>
 </h4>
 <div *ngIf="ussser" class="row d-flex justify-content-center">
   <ng-container  *ngFor="let file of ussser index as i">
@@ -315,13 +315,12 @@ New refresh
 </div>
 
 <h4 class='text-center rounded p-1 my-2  mt-5'>
-
-  <button *ngIf="rol=='1'" type="button" name="button"  (click)="Filecurse.click(); Type('videosconfidencial',ussser._id)" class="btn btn-info">Cargar</button>
-  VIDEOS CONFIDENCIALES
+  <h5>VIDEOS CONFIDENCIALES</h5>
+  <button *ngIf="rol=='1'" type="button" name="button"  (click)="Filecurse.click(); Type('videosconfidencial',ussser._id)" class="btn btn-info">Cargar VIDEOS CONFIDENCIALES</button>
 </h4>
 <div *ngIf="ussser" class="row d-flex justify-content-center">
   <ng-container  *ngFor="let file of ussser index as i">
-    <div *ngIf="file.type=='videosconfidencial'" class="rounded p-1 col-md-6 col-lg-4 col-xl-4">
+    <div *ngIf="file.type=='videosconfidencial'" class="rounded p-1 col-md-6 col-lg-6 col-xl-6">
       <div class="border p-1">
         <div class="h5 my-0">{{file.title}}</div>
         <input *ngIf="rol=='1'" type="text" class="form-control" placeholder="" [value]="file.title"
@@ -334,9 +333,10 @@ New refresh
 
           <button class="btn btn-danger" (click)="FileCursedelete( file._id)">Eliminar</button>
         </div>
-            <video id="my_video_1" class="video-js vjs-default-skin" width="100%" controls preload="none"
-            		poster='../assets/img5.jpg'>
-            		<source [src]="apiURL+'/'+ file.img" type="video/mp4" width="100%" height="50px"/>
+
+            <video id="my_video_1" class="video-js vjs-default-skin" width="100%" controls preload="auto"
+            	 >
+            		<source [src]="apiURL+'/'+ file.img" type="video/mp4" width="100%" height="100px"/>
              	</video>
 
               {{file.description}}
@@ -350,8 +350,8 @@ New refresh
 
 
 <h4 class='text-center rounded p-1 my-2  mt-5'>
+<h5>DOCUMENTOS</h5>
   <button *ngIf="rol=='1'" type="button" name="button"  (click)="Filecurse.click(); Type('documentos',ussser._id)" class="btn btn-info">Cargar</button>
-DOCUMENTOS
 </h4>
 <div *ngIf="ussser" class="row d-flex justify-content-center">
   <ng-container  *ngFor="let file of ussser index as i">
@@ -380,9 +380,9 @@ DOCUMENTOS
 
 
 <h4 class='text-center rounded p-1 my-2 mt-5'>
+      <h5>INVITADOS</h5>
     <button *ngIf="rol=='1'" type="button" name="button"  (click)="Filecurse.click(); Type('invitados',ussser._id)" class="btn  btn-warning">
       Agregar</button>
-      INVITADOS
       </h4>
       <div *ngIf="ussser" class="row d-flex justify-content-center my-3">
         <ng-container  *ngFor="let file of ussser index as i">
@@ -739,24 +739,24 @@ ACADÉMICA
                         <img class="img-fluid rounded w-100" src="../assets/logo.svg" (error)="onImgError($event)" alt="img" />
                     </div>
                     <p class="footer-links my-0">
-                      NANCY VIZA
+                      WWWWWWWWWWWWWWWWWWW
                     </p>
                     <p class="my-0">
-                    ARTIST - LIMA
+                    WWWWWWW WWWWWW
                     </p>
                     <div></div>
                 </div>
                 <div class="container text-center p-1 col-md-6 col-lg-4 col-xl-4">
                     <div>
                         <i class="text-secondary fa fa-map-marker fa-2x"></i>
-                        <p>LIMA - PERÚ</p>
+                        <p>AYACUCHO - PERÚ</p>
                     </div>
                     <div>
                         <i class="text-secondary fa fa-phone fa-2x"></i>
-                        <p>www.nancyviza.com</p>
+                        <p>www.wwwwwwwww.com</p>
                     </div>
                     <div>
-                        <p class="text-success">©Copyright nancyviza - 2023</p>
+                        <p class="text-success">©Copyright wwwwwwwww - 2023</p>
                     </div>
                     <div>
                         <i class="text-secondary fa fa-envelope fa-2x"></i>
@@ -768,7 +768,7 @@ ACADÉMICA
 
 <div class="container text-center p-5 col-md-6 col-lg-4 col-xl-4">
 <p>
-  Teléfono: 992519877
+  Teléfono: 1234567890
 </p>
 <a class="text-dark mx-1" target="_blank" href="https://www.facebook.com/nancyvizaarte/">
   <mat-icon svgIcon="facebook" aria-hidden="false" aria-label="Example thumbs up SVG icon"></mat-icon>

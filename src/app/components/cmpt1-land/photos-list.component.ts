@@ -535,7 +535,7 @@ getFirstAverages(ciclo:HTMLInputElement, mension:HTMLInputElement, year:HTMLInpu
     ngOnInit() {
 
       this.year = new Date().getFullYear();
-      this.Tw.setTitle('Inicio NANCY VIZA');
+      this.Tw.setTitle('Inicio');
 
       this.usser();
       this.gets_news();
